@@ -193,3 +193,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(wall_follower src/wall_follower/wall_follower.cpp)
+target_link_libraries(wall_follower ${catkin_LIBRARIES})
+add_library(wall_follower src/wall_follower/wall_follower.cpp)
