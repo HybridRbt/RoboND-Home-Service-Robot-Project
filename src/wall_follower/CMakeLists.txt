@@ -103,7 +103,7 @@ include_directories(${catkin_INCLUDE_DIRS})
 catkin_package(
     INCLUDE_DIRS
     LIBRARIES wall_follower
-    CATKIN_DEPENDS CATKIN_DEPENDS roscpp geometry_msgs joy
+    CATKIN_DEPENDS CATKIN_DEPENDS
     DEPENDS
 )
 
