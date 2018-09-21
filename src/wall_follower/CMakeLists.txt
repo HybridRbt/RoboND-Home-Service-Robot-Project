@@ -89,6 +89,8 @@ find_package(catkin REQUIRED COMPONENTS roscpp)
 #   cfg/DynReconf2.cfg
 # )
 
+include_directories(${catkin_INCLUDE_DIRS})
+
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -99,10 +101,10 @@ find_package(catkin REQUIRED COMPONENTS roscpp)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#    INCLUDE_DIRS include
+    INCLUDE_DIRS
     LIBRARIES wall_follower
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+    CATKIN_DEPENDS CATKIN_DEPENDS roscpp geometry_msgs joy
+    DEPENDS
 )
 
 ###########
@@ -111,7 +113,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-#include_directories(include ${catkin_INCLUDE_DIRS})
+#  include_directories(${catkin_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
