@@ -131,6 +131,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/workspace/catkin_ws/build/slam_gmapping/gmapping/cmake_install.cmake")
   include("/home/workspace/catkin_ws/build/turtlebot_interactions/turtlebot_interactive_markers/cmake_install.cmake")
   include("/home/workspace/catkin_ws/build/turtlebot/turtlebot_teleop/cmake_install.cmake")
+  include("/home/workspace/catkin_ws/build/wall_follower/cmake_install.cmake")
   include("/home/workspace/catkin_ws/build/turtlebot/turtlebot_description/cmake_install.cmake")
 
 endif()

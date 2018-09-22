@@ -1583,6 +1583,19 @@ turtlebot_teleop_joy/fast:
 .PHONY : turtlebot_teleop_joy/fast
 
 #=============================================================================
+# Target rules for targets named wall_follower
+
+# Build rule for target.
+wall_follower: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 wall_follower
+.PHONY : wall_follower
+
+# fast build rule for target.
+wall_follower/fast:
+	$(MAKE) -f wall_follower/CMakeFiles/wall_follower.dir/build.make wall_follower/CMakeFiles/wall_follower.dir/build
+.PHONY : wall_follower/fast
+
+#=============================================================================
 # Target rules for targets named _run_tests_turtlebot_description
 
 # Build rule for target.
@@ -1821,6 +1834,7 @@ help:
 	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... turtlebot_teleop_joy"
+	@echo "... wall_follower"
 	@echo "... _run_tests_turtlebot_description"
 	@echo "... run_tests_turtlebot_description_gtest_turtlebot_description_test_urdf"
 	@echo "... run_tests_turtlebot_description"
