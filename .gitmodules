@@ -10,6 +10,3 @@
 [submodule "src/turtlebot_interactions"]
 	path = src/turtlebot_interactions
 	url = https://github.com/turtlebot/turtlebot_interactions.git
-[submodule "src/turtlebot_apps"]
-	path = src/turtlebot_apps
-	url = https://github.com/turtlebot/turtlebot_apps.git
