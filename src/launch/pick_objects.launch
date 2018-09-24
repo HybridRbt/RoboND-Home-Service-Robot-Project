@@ -1,4 +1,4 @@
 <launch>
-  <node pkg="pick_objects" type="pick_objects" name="pick_objects">
+  <node pkg="pick_objects" type="pick_objects" name="pick_objects" output="screen">
   </node>
 </launch>
