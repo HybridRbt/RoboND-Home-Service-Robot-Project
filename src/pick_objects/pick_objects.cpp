@@ -28,11 +28,15 @@ int main(int argc, char** argv) {
     dropoff_goal.target_pose.header.stamp = ros::Time::now();
 
     // Define a position and orientation for the robot to reach
-    pickup_goal.target_pose.pose.position.y = 1.0;
-    pickup_goal.target_pose.pose.orientation.w = 1.0;
+    pickup_goal.target_pose.pose.position.x = -0.61;
+    pickup_goal.target_pose.pose.position.y = -2.65;
+    pickup_goal.target_pose.pose.orientation.z = 0.99;
+    pickup_goal.target_pose.pose.orientation.w = -0.13;
 
-    dropoff_goal.target_pose.pose.position.y = -1.0;
-    dropoff_goal.target_pose.pose.orientation.w = 1.0;
+    dropoff_goal.target_pose.pose.position.x = -6.03;
+    dropoff_goal.target_pose.pose.position.y = 2.1;
+    dropoff_goal.target_pose.pose.orientation.z = 0.556;
+    dropoff_goal.target_pose.pose.orientation.w = 0.83;
 
     // send the pickup goal position and orientation for the robot to reach
     ROS_INFO("Sending pickup goal");
