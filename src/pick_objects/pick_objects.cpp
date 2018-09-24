@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
     // Initialize the pick_objects node
     ros::init(argc, argv, "pick_objects");
 
+    ROS_INFO("node inited");
+
     // tell the action client that we want to spin a thread by default
     MoveBaseClient ac("move_base", true);
 
@@ -16,6 +18,8 @@ int main(int argc, char** argv) {
     while (!ac.waitForServer(ros::Duration(5.0))) {
         ROS_INFO("waiting for the move_base action server to come up");
     }
+
+    ROS_INFO("action server is up");
 
     move_base_msgs::MoveBaseGoal pickup_goal;
     move_base_msgs::MoveBaseGoal dropoff_goal;
@@ -42,6 +46,7 @@ int main(int argc, char** argv) {
     ROS_INFO("Sending pickup goal");
     ac.sendGoal(pickup_goal);
 
+    ROS_INFO("waiting for the robot to go to pick up goal");
     // wait an infinite time for the results
     ac.waitForResult();
 
@@ -61,6 +66,7 @@ int main(int argc, char** argv) {
     ROS_INFO("Sending dropoff goal");
     ac.sendGoal(dropoff_goal);
 
+    ROS_INFO("waiting for the robot to go to drop off goal");
     // wait an infinite time for the results
     ac.waitForResult();
 
