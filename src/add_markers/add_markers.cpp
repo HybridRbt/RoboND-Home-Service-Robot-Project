@@ -37,9 +37,9 @@ int main(int argc, char** argv) {
         marker.pose.orientation.w = -0.13;
 
         // set the scale of the marker
-        marker.scale.x = 1.0;
-        marker.scale.y = 1.0;
-        marker.scale.z = 1.0;
+        marker.scale.x = 0.2;
+        marker.scale.y = 0.2;
+        marker.scale.z = 0.2;
 
         // set the color = darkmagenta	#8B008B	rgb(139,0,139)
         marker.color.r = 0.545f;
