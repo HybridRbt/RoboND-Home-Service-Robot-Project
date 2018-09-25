@@ -31,10 +31,10 @@ int main(int argc, char** argv) {
         marker.pose.position.y = -2.65;
         marker.pose.position.z = 0;
 
-        marker.target_pose.pose.orientation.x = 0;
-        marker.target_pose.pose.orientation.y = 0;
-        marker.target_pose.pose.orientation.z = 0.99;
-        marker.target_pose.pose.orientation.w = -0.13;
+        marker.pose.orientation.x = 0;
+        marker.pose.orientation.y = 0;
+        marker.pose.orientation.z = 0.99;
+        marker.pose.orientation.w = -0.13;
 
         // set the scale of the marker
         marker.scale.x = 1.0;
@@ -66,10 +66,10 @@ int main(int argc, char** argv) {
         marker.pose.position.y = 2.1;
         marker.pose.position.z = 0;
 
-        marker.target_pose.pose.orientation.x = 0;
-        marker.target_pose.pose.orientation.y = 0;
-        marker.target_pose.pose.orientation.z = 0.556;
-        marker.target_pose.pose.orientation.w = 0.83;
+        marker.pose.orientation.x = 0;
+        marker.pose.orientation.y = 0;
+        marker.pose.orientation.z = 0.556;
+        marker.pose.orientation.w = 0.83;
 
         // publish the marker
         while (marker_pub.getNumSubscribers() < 1) {
