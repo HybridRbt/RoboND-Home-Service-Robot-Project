@@ -57,10 +57,13 @@ int main(int argc, char** argv) {
             ROS_WARN_ONCE("Please create a subscriber to the marker");
             sleep(1);
         }
+        ROS_INFO("will pub the pick up marker now");
         marker_pub.publish(marker);
 
+        ROS_INFO("will sleep now");
         ros::Duration(5).sleep(); // pause for 5 sec
 
+        ROS_INFO("wake up and pub a new marker");
         // set the pose of the marker. use the drop off goal pos
         marker.pose.position.x = -6.03;
         marker.pose.position.y = 2.1;
@@ -79,7 +82,10 @@ int main(int argc, char** argv) {
             ROS_WARN_ONCE("Please create a subscriber to the marker");
             sleep(1);
         }
+        ROS_INFO("will pub the drop off marker now");
         marker_pub.publish(marker);
+        ROS_INFO("will sleep now");
+        ros::Duration(5).sleep(); // pause for 5 sec
 
         r.sleep();
     }
