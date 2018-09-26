@@ -361,6 +361,19 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named add_markers
+
+# Build rule for target.
+add_markers: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add_markers
+.PHONY : add_markers
+
+# fast build rule for target.
+add_markers/fast:
+	$(MAKE) -f add_markers/CMakeFiles/add_markers.dir/build.make add_markers/CMakeFiles/add_markers.dir/build
+.PHONY : add_markers/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -1818,6 +1831,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_py"
+	@echo "... add_markers"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_cpp"
