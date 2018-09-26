@@ -15,7 +15,7 @@ public:
 };
 
 Marker_drawer::Marker_drawer() {
-
+    ros::Time::init();
 }
 void Marker_drawer::setPub(ros::NodeHandle* n) {
     marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
@@ -30,7 +30,6 @@ void Marker_drawer::setDrawer() {
 
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
-    ros::Time::init();
     marker.header.stamp = ros::Time::now();
 
     // set marker type
