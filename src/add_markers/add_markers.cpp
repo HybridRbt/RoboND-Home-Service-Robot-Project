@@ -15,7 +15,7 @@ public:
 };
 
 Marker_drawer::Marker_drawer() {
-    ros::Time::init();
+    //ros::Time::init();
 }
 void Marker_drawer::setPub(ros::NodeHandle* n) {
     marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
@@ -107,8 +107,8 @@ int main(int argc, char** argv) {
 
     drawer.setPub(&n);
     drawer.setDrawer();
-    ros::Time::init();
-    drawer.marker.header.stamp = ros::Time::now();
+    //ros::Time::init();
+    //drawer.marker.header.stamp = ros::Time::now();
 
     while (ros::ok()) {
         ros::spin();
