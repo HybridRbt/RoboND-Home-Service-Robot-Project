@@ -2,12 +2,19 @@
 #include <visualization_msgs/Marker.h>
 #include "std_msgs/Int32.h"
 
-void arrived_action(const std_msgs::Int32::ConstPtr& msg)
-{
-    ros::NodeHandle n;
-    ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-    uint32_t shape = visualization_msgs::Marker::CUBE;
+class Marker_drawer {
+private:
+    ros::Publisher marker_pub;
+    uint32_t shape;
     visualization_msgs::Marker marker;
+public:
+    Marker_drawer();
+    void arrived_action(const std_msgs::Int32::ConstPtr& msg);
+    void setPub();
+};
+
+Marker_drawer::Marker_drawer(void) {
+    shape = visualization_msgs::Marker::CUBE;
 
     // set the namespace and id for this marker
     marker.ns = "markers";
@@ -32,16 +39,14 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
     marker.color.a = 0.85f; // a little bit transparent
 
     marker.lifetime = ros::Duration();
+}
 
-    // publish the marker
-    while (marker_pub.getNumSubscribers() < 1) {
-        if (!ros::ok()) {
-            return;
-        }
-        ROS_WARN_ONCE("Please create a subscriber to the marker");
-        sleep(1);
-    }
+void Marker_drawer::setPub(ros::NodeHandle* n) {
+    marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
+}
 
+void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
+{
     if (msg->data == 0) {
         // op started
         ROS_INFO("add marker at pickup");
@@ -91,12 +96,17 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
 
 int main(int argc, char** argv) {
     ros::init(argc, argv, "add_markers");
-    ros::NodeHandle n;
     ros::Rate r(1);
-    ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, arrived_action);
+    ros::NodeHandle n;
+
+    Marker_drawer drawer;
+
+    drawer.setPub(&n);
+
+    ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
 
     while (ros::ok()) {
-        ros::spinOnce();
+        ros::spin();
         r.sleep();
     }
 }
