@@ -1,5 +1,6 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
+#include "std_msgs/Int32.h"
 
 void arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
@@ -26,7 +27,7 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
         // set frame id and timestamp.
         marker.header.frame_id = "map"; // use absolute cordinates
         marker.header.stamp = ros::Time::now();
-        
+
         // set marker action
         marker.action = visualization_msgs::Marker::ADD;
 
