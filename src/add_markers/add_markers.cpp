@@ -19,8 +19,11 @@ public:
 Marker_drawer::Marker_drawer() {
     //ros::start();
     setDrawer();
+    ROS_INFO("drawer inited");
 }
+
 void Marker_drawer::setPub(ros::NodeHandle* n) {
+    ROS_INFO("pub is set");
     marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
 }
 
