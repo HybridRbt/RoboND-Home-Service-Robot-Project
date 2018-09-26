@@ -6,8 +6,8 @@ class Marker_drawer {
 private:
     ros::Publisher marker_pub;
     uint32_t shape;
-public:
     visualization_msgs::Marker marker;
+public:
     Marker_drawer();
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
     void setPub(ros::NodeHandle* n);
@@ -45,7 +45,7 @@ void Marker_drawer::setDrawer() {
     marker.color.b = 0.545f;
     marker.color.a = 0.85f; // a little bit transparent
 
-    marker.lifetime = ros::Duration();
+    //marker.lifetime = ros::Duration();
 }
 
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
@@ -74,7 +74,7 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
 
-        ros::Duration(5).sleep();
+        //ros::Duration(5).sleep();
     } else if (msg->data == 3) {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
