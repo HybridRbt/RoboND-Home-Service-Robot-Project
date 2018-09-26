@@ -105,7 +105,6 @@ int main(int argc, char** argv) {
     ros::start();
     //ros::Time::init();
 
-    ros::Rate r(1);
     ros::NodeHandle n;
 
     Marker_drawer drawer;
@@ -115,8 +114,5 @@ int main(int argc, char** argv) {
     drawer.setPub(&n);
     drawer.setDrawer();
 
-    while (ros::ok()) {
-        ros::spinOnce();
-        r.sleep();
-    }
+    ros::spin();
 }
