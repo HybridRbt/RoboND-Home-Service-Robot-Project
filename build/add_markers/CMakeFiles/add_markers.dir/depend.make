@@ -64,6 +64,7 @@ add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/inclu
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/rosconsole/macros_generated.h
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/std_msgs/ColorRGBA.h
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
+add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/std_msgs/Int32.h
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/visualization_msgs/Marker.h
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
