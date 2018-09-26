@@ -90,8 +90,8 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
 }
 
 int main(int argc, char** argv) {
-    ros::NodeHandle n;
     ros::init(argc, argv, "add_markers");
+    ros::NodeHandle n;
     ros::Rate r(1);
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, arrived_action);
 
