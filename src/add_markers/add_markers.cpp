@@ -4,6 +4,7 @@
 
 void arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
+    ros::NodeHandle n;
     ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
     uint32_t shape = visualization_msgs::Marker::CUBE;
     visualization_msgs::Marker marker;

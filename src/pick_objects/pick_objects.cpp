@@ -12,6 +12,8 @@ int main(int argc, char** argv) {
 
     ROS_INFO("node inited");
 
+    ros::NodeHandle n;
+
     // tell the action client that we want to spin a thread by default
     MoveBaseClient ac("move_base", true);
 
