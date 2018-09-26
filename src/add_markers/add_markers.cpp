@@ -31,7 +31,8 @@ void Marker_drawer::setDrawer() {
 
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
-
+    marker.header.stamp = ros::Time::now();
+    
     // set marker type
     marker.type = shape;
 
@@ -46,7 +47,7 @@ void Marker_drawer::setDrawer() {
     marker.color.b = 0.545f;
     marker.color.a = 0.85f; // a little bit transparent
 
-    //marker.lifetime = ros::Duration();
+    marker.lifetime = ros::Duration();
 }
 
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
@@ -75,7 +76,7 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
 
-        //ros::Duration(5).sleep();
+        ros::Duration(5).sleep();
     } else if (msg->data == 3) {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
@@ -103,7 +104,7 @@ int main(int argc, char** argv) {
 
     ros::start();
     ros::Time::init();
-    
+
     ros::Rate r(1);
     ros::NodeHandle n;
 
