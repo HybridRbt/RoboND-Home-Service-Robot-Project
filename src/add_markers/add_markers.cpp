@@ -101,7 +101,7 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 
 int main(int argc, char** argv) {
     ros::init(argc, argv, "add_markers");
-
+    ROS_INFO("node inited");
     ros::start();
     //ros::Time::init();
 
@@ -109,6 +109,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle n;
 
     Marker_drawer drawer;
+    ROS_INFO("drawer inited");
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
 
     drawer.setPub(&n);
