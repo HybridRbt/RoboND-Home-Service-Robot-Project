@@ -11,9 +11,14 @@ public:
     Marker_drawer();
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
     void setPub(ros::NodeHandle* n);
+    void setDrawer();
 };
 
-Marker_drawer::Marker_drawer(void) {
+void Marker_drawer::setPub(ros::NodeHandle* n) {
+    marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
+}
+
+void Marker_drawer::setDrawer() {
     shape = visualization_msgs::Marker::CUBE;
 
     // set the namespace and id for this marker
@@ -39,10 +44,6 @@ Marker_drawer::Marker_drawer(void) {
     marker.color.a = 0.85f; // a little bit transparent
 
     marker.lifetime = ros::Duration();
-}
-
-void Marker_drawer::setPub(ros::NodeHandle* n) {
-    marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
 }
 
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
@@ -101,6 +102,7 @@ int main(int argc, char** argv) {
 
     Marker_drawer drawer;
 
+    drawer.setDrawer();
     drawer.setPub(&n);
 
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
