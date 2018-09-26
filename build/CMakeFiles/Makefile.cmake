@@ -359,6 +359,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "add_markers/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "add_markers/CMakeFiles/visualization_msgs_generate_messages_py.dir/DependInfo.cmake"
   "add_markers/CMakeFiles/roscpp_generate_messages_py.dir/DependInfo.cmake"
+  "add_markers/CMakeFiles/add_markers.dir/DependInfo.cmake"
   "add_markers/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "add_markers/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "add_markers/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/DependInfo.cmake"

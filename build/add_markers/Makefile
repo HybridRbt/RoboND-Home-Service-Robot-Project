@@ -241,6 +241,21 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
+add_markers/CMakeFiles/add_markers.dir/rule:
+	cd /home/workspace/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 add_markers/CMakeFiles/add_markers.dir/rule
+.PHONY : add_markers/CMakeFiles/add_markers.dir/rule
+
+# Convenience name for target.
+add_markers: add_markers/CMakeFiles/add_markers.dir/rule
+
+.PHONY : add_markers
+
+# fast build rule for target.
+add_markers/fast:
+	cd /home/workspace/catkin_ws/build && $(MAKE) -f add_markers/CMakeFiles/add_markers.dir/build.make add_markers/CMakeFiles/add_markers.dir/build
+.PHONY : add_markers/fast
+
+# Convenience name for target.
 add_markers/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
 	cd /home/workspace/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 add_markers/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 .PHONY : add_markers/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
@@ -540,6 +555,33 @@ visualization_msgs_generate_messages_lisp/fast:
 	cd /home/workspace/catkin_ws/build && $(MAKE) -f add_markers/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make add_markers/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
 .PHONY : visualization_msgs_generate_messages_lisp/fast
 
+add_markers.o: add_markers.cpp.o
+
+.PHONY : add_markers.o
+
+# target to build an object file
+add_markers.cpp.o:
+	cd /home/workspace/catkin_ws/build && $(MAKE) -f add_markers/CMakeFiles/add_markers.dir/build.make add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.o
+.PHONY : add_markers.cpp.o
+
+add_markers.i: add_markers.cpp.i
+
+.PHONY : add_markers.i
+
+# target to preprocess a source file
+add_markers.cpp.i:
+	cd /home/workspace/catkin_ws/build && $(MAKE) -f add_markers/CMakeFiles/add_markers.dir/build.make add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.i
+.PHONY : add_markers.cpp.i
+
+add_markers.s: add_markers.cpp.s
+
+.PHONY : add_markers.s
+
+# target to generate assembly for a file
+add_markers.cpp.s:
+	cd /home/workspace/catkin_ws/build && $(MAKE) -f add_markers/CMakeFiles/add_markers.dir/build.make add_markers/CMakeFiles/add_markers.dir/add_markers.cpp.s
+.PHONY : add_markers.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -557,6 +599,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_py"
+	@echo "... add_markers"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_cpp"
@@ -578,6 +621,9 @@ help:
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... visualization_msgs_generate_messages_lisp"
+	@echo "... add_markers.o"
+	@echo "... add_markers.i"
+	@echo "... add_markers.s"
 .PHONY : help
 
 
