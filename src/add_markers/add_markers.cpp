@@ -6,8 +6,8 @@ class Marker_drawer {
 private:
     ros::Publisher marker_pub;
     uint32_t shape;
-    visualization_msgs::Marker marker;
 public:
+    visualization_msgs::Marker marker;
     Marker_drawer();
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
     void setPub(ros::NodeHandle* n);
@@ -30,7 +30,6 @@ void Marker_drawer::setDrawer() {
 
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
-    marker.header.stamp = ros::Time::now();
 
     // set marker type
     marker.type = shape;
@@ -103,12 +102,13 @@ int main(int argc, char** argv) {
     ros::Rate r(1);
     ros::NodeHandle n;
 
+    Marker_drawer drawer;
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
 
-    Marker_drawer drawer;
     drawer.setPub(&n);
     drawer.setDrawer();
-    
+    drawer.marker.header.stamp = ros::Time::now();
+
     while (ros::ok()) {
         ros::spin();
         r.sleep();
