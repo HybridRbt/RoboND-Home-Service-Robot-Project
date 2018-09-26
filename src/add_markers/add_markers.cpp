@@ -12,6 +12,8 @@ public:
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
     void setPub(ros::NodeHandle* n);
     void setDrawer();
+    void drawAtPickUp();
+    void drawAtDropoff();
 };
 
 Marker_drawer::Marker_drawer() {
@@ -50,25 +52,45 @@ void Marker_drawer::setDrawer() {
     marker.lifetime = ros::Duration();
 }
 
+void Marker_drawer::drawAtPickUp() {
+    // set marker action
+    marker.action = visualization_msgs::Marker::ADD;
+
+    // set the pose of the marker. use the pick up goal pos
+    marker.pose.position.x = -0.61;
+    marker.pose.position.y = -2.65;
+    marker.pose.position.z = 0;
+
+    marker.pose.orientation.x = 0;
+    marker.pose.orientation.y = 0;
+    marker.pose.orientation.z = 0.99;
+    marker.pose.orientation.w = -0.13;
+
+    marker_pub.publish(marker);
+}
+
+void Marker_drawer::drawAtDropoff() {
+    // set marker action
+    marker.action = visualization_msgs::Marker::ADD;
+
+    // set the pose of the marker. use the drop off goal pos
+    marker.pose.position.x = -6.03;
+    marker.pose.position.y = 2.1;
+    marker.pose.position.z = 0;
+
+    marker.pose.orientation.x = 0;
+    marker.pose.orientation.y = 0;
+    marker.pose.orientation.z = 0.556;
+    marker.pose.orientation.w = 0.83;
+
+    marker_pub.publish(marker);
+}
+
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
     if (msg->data == 0) {
         // op started
         ROS_INFO("add marker at pickup");
-        // set marker action
-        marker.action = visualization_msgs::Marker::ADD;
-
-        // set the pose of the marker. use the pick up goal pos
-        marker.pose.position.x = -0.61;
-        marker.pose.position.y = -2.65;
-        marker.pose.position.z = 0;
-
-        marker.pose.orientation.x = 0;
-        marker.pose.orientation.y = 0;
-        marker.pose.orientation.z = 0.99;
-        marker.pose.orientation.w = -0.13;
-
-        marker_pub.publish(marker);
     } else if (msg->data == 2) {
         // reached pickup goal
         ROS_INFO("remove marker at pickup");
