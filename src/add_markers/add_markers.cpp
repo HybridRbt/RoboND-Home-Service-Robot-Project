@@ -36,7 +36,7 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
     // publish the marker
     while (marker_pub.getNumSubscribers() < 1) {
         if (!ros::ok()) {
-            return 0;
+            return;
         }
         ROS_WARN_ONCE("Please create a subscriber to the marker");
         sleep(1);
