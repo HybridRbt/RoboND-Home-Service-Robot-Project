@@ -17,8 +17,8 @@ public:
 };
 
 Marker_drawer::Marker_drawer() {
-    ros::start();
-    //ros::Time::init();
+    //ros::start();
+    setDrawer();
 }
 void Marker_drawer::setPub(ros::NodeHandle* n) {
     marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
