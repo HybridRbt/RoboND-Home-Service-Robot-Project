@@ -66,10 +66,7 @@ void arrived_action(const std_msgs::Int32::ConstPtr& msg)
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
 
-        // wait 5 seconds before moving to dropoff goal
-        while (!ac.waitForServer(ros::Duration(5.0))) {
-            ROS_INFO("waiting 5 sec");
-        }
+        ros::Duration(5).sleep();
     } else if (msg->data == 3) {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
