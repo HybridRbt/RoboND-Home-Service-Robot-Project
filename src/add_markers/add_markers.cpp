@@ -10,7 +10,7 @@ private:
 public:
     Marker_drawer();
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
-    void setPub();
+    void setPub(ros::NodeHandle* n);
 };
 
 Marker_drawer::Marker_drawer(void) {
