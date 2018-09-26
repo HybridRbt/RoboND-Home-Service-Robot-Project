@@ -94,7 +94,8 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
     if (msg->data == 0) {
         // op started
         ROS_INFO("add marker at pickup");
-    } else if (msg->data == 2) {
+        drawAtPickUp();
+    } else if (msg->data == 1) {
         // reached pickup goal
         ROS_INFO("remove marker at pickup");
         // set marker action
@@ -102,7 +103,7 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
         marker_pub.publish(marker);
 
         ros::Duration(5).sleep();
-    } else if (msg->data == 3) {
+    } else if (msg->data == 2) {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
         drawAtDropoff();
