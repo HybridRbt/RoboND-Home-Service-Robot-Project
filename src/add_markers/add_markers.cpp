@@ -103,12 +103,12 @@ int main(int argc, char** argv) {
     ros::Rate r(1);
     ros::NodeHandle n;
 
-    Marker_drawer drawer;
-    drawer.setDrawer();
-    drawer.setPub(&n);
-
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
 
+    Marker_drawer drawer;
+    drawer.setPub(&n);
+    drawer.setDrawer();
+    
     while (ros::ok()) {
         ros::spin();
         r.sleep();
