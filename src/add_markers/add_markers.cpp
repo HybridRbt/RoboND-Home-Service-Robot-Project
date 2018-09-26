@@ -105,22 +105,7 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
     } else if (msg->data == 3) {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
-
-        // set marker action
-        marker.action = visualization_msgs::Marker::ADD;
-
-        // set the pose of the marker. use the drop off goal pos
-        marker.pose.position.x = -6.03;
-        marker.pose.position.y = 2.1;
-        marker.pose.position.z = 0;
-
-        marker.pose.orientation.x = 0;
-        marker.pose.orientation.y = 0;
-        marker.pose.orientation.z = 0.556;
-        marker.pose.orientation.w = 0.83;
-
-        // publish the marker
-        marker_pub.publish(marker);
+        drawAtDropoff();
     }
 }
 
@@ -128,16 +113,14 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "add_markers");
     ROS_INFO("node inited");
     ros::start();
-    //ros::Time::init();
 
     ros::NodeHandle n;
 
     Marker_drawer drawer;
-    ROS_INFO("drawer inited");
+
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
 
     drawer.setPub(&n);
-    drawer.setDrawer();
 
     ros::spin();
 }
