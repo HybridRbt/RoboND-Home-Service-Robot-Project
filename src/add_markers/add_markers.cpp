@@ -32,7 +32,7 @@ void Marker_drawer::setDrawer() {
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
     marker.header.stamp = ros::Time::now();
-    
+
     // set marker type
     marker.type = shape;
 
@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
     //drawer.marker.header.stamp = ros::Time::now();
 
     while (ros::ok()) {
-        ros::spin();
+        ros::spinOnce();
         r.sleep();
     }
 }
