@@ -21,6 +21,11 @@ int main(int argc, char** argv) {
 
     ROS_INFO("action server is up");
 
+    // add a publisher to tell if the robot has reached the goal
+    // 0 == failed, 1 == pickup goal, 2 == dropoff goal
+    ros::Publisher arrived_pub = n.advertise<std_msgs::Int32>("arrived_flag", 1000);
+    std_msgs::Int32 flag;
+
     move_base_msgs::MoveBaseGoal pickup_goal;
     move_base_msgs::MoveBaseGoal dropoff_goal;
 
@@ -53,8 +58,14 @@ int main(int argc, char** argv) {
     // Check if the robot has reached its goal
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
         ROS_INFO("Hooray, the base moved to the pick up goal");
+        flag.data = 1; // reached the pick up goal
+        arrived_pub.publish(flag);
+        ROS_INFO("Pickup flag raised");
     } else {
         ROS_INFO("The base failed to move to the pick up goal for some reason");
+        flag.data = 0; // failed to reach the pick up goal
+        arrived_pub.publish(flag);
+        ROS_INFO("Fail flag raised");
     }
 
     // wait 5 seconds before moving to dropoff goal
@@ -73,8 +84,14 @@ int main(int argc, char** argv) {
     // Check if the robot has reached its goal
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
         ROS_INFO("Hooray, the base moved to the drop off goal");
+        flag.data = 2; // reached the dropoff goal
+        arrived_pub.publish(flag);
+        ROS_INFO("Dropoff flag raised");
     } else {
         ROS_INFO("The base failed to move to drop off goal for some reason");
+        flag.data = 0; // failed to reach the pick up goal
+        arrived_pub.publish(flag);
+        ROS_INFO("Fail flag raised");
     }
 
     return 0;
