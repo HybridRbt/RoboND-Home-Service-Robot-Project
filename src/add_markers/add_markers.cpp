@@ -118,6 +118,7 @@ int main(int argc, char** argv) {
         ROS_INFO("will pub the pick up marker now");
         marker_pub.publish(marker);
 
+        ros::spinOnce();
         r.sleep();
     }
 }
