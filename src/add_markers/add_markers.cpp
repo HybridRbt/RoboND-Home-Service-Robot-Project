@@ -107,6 +107,7 @@ int main(int argc, char** argv) {
 
     drawer.setPub(&n);
     drawer.setDrawer();
+    ros::Time::init();
     drawer.marker.header.stamp = ros::Time::now();
 
     while (ros::ok()) {
