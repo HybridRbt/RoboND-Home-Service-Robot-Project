@@ -1,5 +1,5 @@
 <launch>
   <arg name="rviz_config" value="/home/workspace/catkin_ws/src/RvizConfig/home_service.rviz"/>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="$(arg rviz_config)"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)"/>
 </launch>
