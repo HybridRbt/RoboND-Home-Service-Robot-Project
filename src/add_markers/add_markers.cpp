@@ -15,7 +15,7 @@ public:
 };
 
 Marker_drawer::Marker_drawer() {
-    
+
 }
 void Marker_drawer::setPub(ros::NodeHandle* n) {
     marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
@@ -51,6 +51,7 @@ void Marker_drawer::setDrawer() {
 
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
+    Marker_drawer::setDrawer();
     if (msg->data == 0) {
         // op started
         ROS_INFO("add marker at pickup");
@@ -105,7 +106,6 @@ int main(int argc, char** argv) {
 
     Marker_drawer drawer;
 
-    drawer.setDrawer();
     drawer.setPub(&n);
 
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
