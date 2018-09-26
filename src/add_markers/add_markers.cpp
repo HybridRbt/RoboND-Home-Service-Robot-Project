@@ -30,6 +30,7 @@ void Marker_drawer::setDrawer() {
 
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
+    ros::Time::init();
     marker.header.stamp = ros::Time::now();
 
     // set marker type
@@ -51,7 +52,6 @@ void Marker_drawer::setDrawer() {
 
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
-    Marker_drawer::setDrawer();
     if (msg->data == 0) {
         // op started
         ROS_INFO("add marker at pickup");
@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle n;
 
     Marker_drawer drawer;
-
+    drawer.setDrawer();
     drawer.setPub(&n);
 
     ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
