@@ -65,6 +65,7 @@ void Marker_drawer::setDrawer()
 
 void Marker_drawer::drawAtPickUp()
 {
+    ROS_INFO("add marker at pickup");
     // set marker action
     marker.action = visualization_msgs::Marker::ADD;
 
@@ -83,6 +84,7 @@ void Marker_drawer::drawAtPickUp()
 
 void Marker_drawer::drawAtDropoff()
 {
+    ROS_INFO("pub marker at dropoff");
     // set marker action
     marker.action = visualization_msgs::Marker::ADD;
 
@@ -104,7 +106,6 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
     if (msg->data == 0)
     {
         // op started
-        ROS_INFO("add marker at pickup");
         drawAtPickUp();
     }
     else if (msg->data == 1)
@@ -121,7 +122,6 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
     else if (msg->data == 2)
     {
         // reached dropoff goal
-        ROS_INFO("pub marker at dropoff");
         drawAtDropoff();
     }
 }
