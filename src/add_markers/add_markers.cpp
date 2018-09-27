@@ -4,25 +4,37 @@
 
 class Marker_drawer {
 private:
+
     ros::Publisher marker_pub;
     uint32_t shape;
     visualization_msgs::Marker marker;
+
 public:
+
     Marker_drawer();
     void arrived_action(const std_msgs::Int32::ConstPtr& msg);
-    void setPub(ros::NodeHandle* n);
+    void setPub(ros::NodeHandle *n);
     void setDrawer();
+    void drawAtPickUp();
+    void drawAtDropoff();
 };
 
-Marker_drawer::Marker_drawer() {
-    ros::start();
-    //ros::Time::init();
-}
-void Marker_drawer::setPub(ros::NodeHandle* n) {
-    marker_pub = n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
+Marker_drawer::Marker_drawer()
+{
+    // ros::start();
+    setDrawer();
+    ROS_INFO("drawer inited");
 }
 
-void Marker_drawer::setDrawer() {
+void Marker_drawer::setPub(ros::NodeHandle *n)
+{
+    ROS_INFO("pub is set");
+    marker_pub =
+        n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
+}
+
+void Marker_drawer::setDrawer()
+{
     shape = visualization_msgs::Marker::CUBE;
 
     // set the namespace and id for this marker
@@ -31,7 +43,7 @@ void Marker_drawer::setDrawer() {
 
     // set frame id and timestamp.
     marker.header.frame_id = "map"; // use absolute cordinates
-    marker.header.stamp = ros::Time::now();
+    marker.header.stamp    = ros::Time::now();
 
     // set marker type
     marker.type = shape;
@@ -50,69 +62,85 @@ void Marker_drawer::setDrawer() {
     marker.lifetime = ros::Duration();
 }
 
+void Marker_drawer::drawAtPickUp()
+{
+    // set marker action
+    marker.action = visualization_msgs::Marker::ADD;
+
+    // set the pose of the marker. use the pick up goal pos
+    marker.pose.position.x = -0.61;
+    marker.pose.position.y = -2.65;
+    marker.pose.position.z = 0;
+
+    marker.pose.orientation.x = 0;
+    marker.pose.orientation.y = 0;
+    marker.pose.orientation.z = 0.99;
+    marker.pose.orientation.w = -0.13;
+
+    marker_pub.publish(marker);
+}
+
+void Marker_drawer::drawAtDropoff()
+{
+    // set marker action
+    marker.action = visualization_msgs::Marker::ADD;
+
+    // set the pose of the marker. use the drop off goal pos
+    marker.pose.position.x = -6.03;
+    marker.pose.position.y = 2.1;
+    marker.pose.position.z = 0;
+
+    marker.pose.orientation.x = 0;
+    marker.pose.orientation.y = 0;
+    marker.pose.orientation.z = 0.556;
+    marker.pose.orientation.w = 0.83;
+
+    marker_pub.publish(marker);
+}
+
 void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 {
-    if (msg->data == 0) {
+    if (msg->data == 0)
+    {
         // op started
         ROS_INFO("add marker at pickup");
-        // set marker action
-        marker.action = visualization_msgs::Marker::ADD;
-
-        // set the pose of the marker. use the pick up goal pos
-        marker.pose.position.x = -0.61;
-        marker.pose.position.y = -2.65;
-        marker.pose.position.z = 0;
-
-        marker.pose.orientation.x = 0;
-        marker.pose.orientation.y = 0;
-        marker.pose.orientation.z = 0.99;
-        marker.pose.orientation.w = -0.13;
-
-        marker_pub.publish(marker);
-    } else if (msg->data == 2) {
+        drawAtPickUp();
+    }
+    else if (msg->data == 1)
+    {
         // reached pickup goal
         ROS_INFO("remove marker at pickup");
+
         // set marker action
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
 
         ros::Duration(5).sleep();
-    } else if (msg->data == 3) {
+    }
+    else if (msg->data == 2)
+    {
         // reached dropoff goal
         ROS_INFO("pub marker at dropoff");
-
-        // set marker action
-        marker.action = visualization_msgs::Marker::ADD;
-
-        // set the pose of the marker. use the drop off goal pos
-        marker.pose.position.x = -6.03;
-        marker.pose.position.y = 2.1;
-        marker.pose.position.z = 0;
-
-        marker.pose.orientation.x = 0;
-        marker.pose.orientation.y = 0;
-        marker.pose.orientation.z = 0.556;
-        marker.pose.orientation.w = 0.83;
-
-        // publish the marker
-        marker_pub.publish(marker);
+        drawAtDropoff();
     }
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
     ros::init(argc, argv, "add_markers");
     ROS_INFO("node inited");
     ros::start();
-    //ros::Time::init();
 
     ros::NodeHandle n;
 
     Marker_drawer drawer;
-    ROS_INFO("drawer inited");
-    ros::Subscriber check_arrival = n.subscribe("arrived_flag", 1000, &Marker_drawer::arrived_action, &drawer);
+
+    ros::Subscriber check_arrival = n.subscribe("arrived_flag",
+                                                1000,
+                                                &Marker_drawer::arrived_action,
+                                                &drawer);
 
     drawer.setPub(&n);
-    drawer.setDrawer();
 
     ros::spin();
 }
