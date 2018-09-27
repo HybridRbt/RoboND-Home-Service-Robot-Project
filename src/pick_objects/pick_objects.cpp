@@ -29,13 +29,10 @@ int main(int argc, char **argv)
     ROS_INFO("action server is up");
 
     // add a publisher to tell if the robot has reached the goal
-    // 0 == op started, 1 == pickup goal, 2 == dropoff goal, 3 == op failed
+    // 1 == op started, 2 == pickup goal, 3 == dropoff goal, 4 == op failed
     ros::Publisher arrived_pub = n.advertise<std_msgs::Int32>("arrived_flag",
                                                               1000);
     std_msgs::Int32 flag;
-    flag.data = 0; // robot started
-    arrived_pub.publish(flag);
-    ROS_INFO("robot started flag raised");
 
     move_base_msgs::MoveBaseGoal pickup_goal;
     move_base_msgs::MoveBaseGoal dropoff_goal;
@@ -64,6 +61,11 @@ int main(int argc, char **argv)
 
     // send the pickup goal position and orientation for the robot to reach
     ROS_INFO("Sending pickup goal");
+
+    flag.data = 1; // robot started
+    arrived_pub.publish(flag);
+    ROS_INFO("robot started flag raised");
+
     ac.sendGoal(pickup_goal);
 
     ROS_INFO("waiting for the robot to go to pick up goal");
@@ -75,14 +77,14 @@ int main(int argc, char **argv)
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {
         ROS_INFO("Hooray, the base moved to the pick up goal");
-        flag.data = 1; // reached the pick up goal
+        flag.data = 2; // reached the pick up goal
         arrived_pub.publish(flag);
         ROS_INFO("Pickup flag raised");
     }
     else
     {
         ROS_INFO("The base failed to move to the pick up goal for some reason");
-        flag.data = 3; // failed to reach the pick up goal
+        flag.data = 4; // failed to reach the pick up goal
         arrived_pub.publish(flag);
         ROS_INFO("Fail flag raised");
     }
@@ -106,14 +108,14 @@ int main(int argc, char **argv)
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {
         ROS_INFO("Hooray, the base moved to the drop off goal");
-        flag.data = 2; // reached the dropoff goal
+        flag.data = 3; // reached the dropoff goal
         arrived_pub.publish(flag);
         ROS_INFO("Dropoff flag raised");
     }
     else
     {
         ROS_INFO("The base failed to move to drop off goal for some reason");
-        flag.data = 3; // failed to reach the pick up goal
+        flag.data = 4; // failed to reach the pick up goal
         arrived_pub.publish(flag);
         ROS_INFO("Fail flag raised");
     }
