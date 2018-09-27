@@ -30,6 +30,8 @@ void Marker_drawer::setPub(ros::NodeHandle *n)
     ROS_INFO("pub is set");
     marker_pub =
         n->advertise<visualization_msgs::Marker>("visualization_marker", 1);
+
+    drawAtPickUp();
 }
 
 void Marker_drawer::setDrawer()
