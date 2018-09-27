@@ -116,8 +116,6 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 
         // set marker action
         marker.action = visualization_msgs::Marker::DELETE;
-
-        ros::Duration(5).sleep();
     }
     else if (msg->data == 3)
     {
@@ -132,7 +130,7 @@ int main(int argc, char **argv)
     ROS_INFO("node inited");
     ros::start();
     ros::Rate r(1);
-    
+
     ros::NodeHandle n;
 
     Marker_drawer drawer;
