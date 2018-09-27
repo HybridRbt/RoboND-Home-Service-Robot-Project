@@ -33,9 +33,6 @@ int main(int argc, char **argv)
     ros::Publisher arrived_pub = n.advertise<std_msgs::Int32>("arrived_flag",
                                                               1000);
     std_msgs::Int32 flag;
-    flag.data = 0; // robot started
-    arrived_pub.publish(flag);
-    ROS_INFO("robot started flag raised");
 
     move_base_msgs::MoveBaseGoal pickup_goal;
     move_base_msgs::MoveBaseGoal dropoff_goal;
@@ -64,6 +61,11 @@ int main(int argc, char **argv)
 
     // send the pickup goal position and orientation for the robot to reach
     ROS_INFO("Sending pickup goal");
+
+    flag.data = 1; // robot started
+    arrived_pub.publish(flag);
+    ROS_INFO("robot started flag raised");
+
     ac.sendGoal(pickup_goal);
 
     ROS_INFO("waiting for the robot to go to pick up goal");
