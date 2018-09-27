@@ -17,6 +17,7 @@ public:
     void setDrawer();
     void drawAtPickUp();
     void drawAtDropoff();
+    void drawMarker();
 };
 
 Marker_drawer::Marker_drawer()
@@ -78,8 +79,6 @@ void Marker_drawer::drawAtPickUp()
     marker.pose.orientation.y = 0;
     marker.pose.orientation.z = 0.99;
     marker.pose.orientation.w = -0.13;
-
-    marker_pub.publish(marker);
 }
 
 void Marker_drawer::drawAtDropoff()
@@ -97,7 +96,9 @@ void Marker_drawer::drawAtDropoff()
     marker.pose.orientation.y = 0;
     marker.pose.orientation.z = 0.556;
     marker.pose.orientation.w = 0.83;
+}
 
+void Marker_drawer::drawMarker() {
     marker_pub.publish(marker);
 }
 
@@ -115,7 +116,6 @@ void Marker_drawer::arrived_action(const std_msgs::Int32::ConstPtr& msg)
 
         // set marker action
         marker.action = visualization_msgs::Marker::DELETE;
-        marker_pub.publish(marker);
 
         ros::Duration(5).sleep();
     }
@@ -130,6 +130,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "add_markers");
     ROS_INFO("node inited");
+    ros::Rate r(1);
     ros::start();
 
     ros::NodeHandle n;
@@ -142,5 +143,9 @@ int main(int argc, char **argv)
                                                 &Marker_drawer::arrived_action,
                                                 &drawer);
 
-    ros::spin();
+    while (ros::ok()) {
+        ros::spinOnce();
+        drawer.drawMarker();
+        r.sleep();
+    }
 }
