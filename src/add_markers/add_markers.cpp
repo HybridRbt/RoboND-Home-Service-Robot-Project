@@ -50,15 +50,15 @@ void Marker_drawer::setDrawer()
     marker.type = shape;
 
     // set the scale of the marker
-    marker.scale.x = 0.2;
-    marker.scale.y = 0.2;
-    marker.scale.z = 0.2;
+    marker.scale.x = 0.35;
+    marker.scale.y = 0.35;
+    marker.scale.z = 0.35;
 
-    // set the color = darkmagenta	#8B008B	rgb(139,0,139)
-    marker.color.r = 0.545f;
+    // set the color = red
+    marker.color.r = 1.0f;
     marker.color.g = 0.0f;
-    marker.color.b = 0.545f;
-    marker.color.a = 0.85f; // a little bit transparent
+    marker.color.b = 0.0f;
+    marker.color.a = 0.95f; // a little bit transparent
 
     marker.lifetime = ros::Duration();
 }
