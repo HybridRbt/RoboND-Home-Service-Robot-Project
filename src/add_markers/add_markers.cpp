@@ -130,9 +130,9 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "add_markers");
     ROS_INFO("node inited");
-    ros::Rate r(1);
     ros::start();
-
+    ros::Rate r(1);
+    
     ros::NodeHandle n;
 
     Marker_drawer drawer;
