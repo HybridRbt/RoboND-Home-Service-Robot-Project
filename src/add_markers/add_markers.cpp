@@ -21,7 +21,6 @@ public:
 
 Marker_drawer::Marker_drawer()
 {
-    // ros::start();
     setDrawer();
     ROS_INFO("drawer inited");
 }
