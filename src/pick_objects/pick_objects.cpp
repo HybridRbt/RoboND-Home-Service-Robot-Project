@@ -89,11 +89,8 @@ int main(int argc, char **argv)
         ROS_INFO("Fail flag raised");
     }
 
-    // wait 5 seconds before moving to dropoff goal
-    while (!ac.waitForServer(ros::Duration(5.0)))
-    {
-        ROS_INFO("waiting 5 sec before moving to dropoff");
-    }
+    ROS_INFO("waiting 5 sec before moving to dropoff");
+    ros::Duration(5.0).sleep();
 
     // send the dropoff goal position and orientation for the robot to reach
     ROS_INFO("Sending dropoff goal");
