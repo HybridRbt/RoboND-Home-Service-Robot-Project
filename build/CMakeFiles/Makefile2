@@ -630,6 +630,24 @@ turtlebot_simulator/turtlebot_stdr/preinstall:
 .PHONY : turtlebot_simulator/turtlebot_stdr/preinstall
 
 #=============================================================================
+# Directory level rules for directory worlds
+
+# Convenience name for "all" pass in the directory.
+worlds/all:
+
+.PHONY : worlds/all
+
+# Convenience name for "clean" pass in the directory.
+worlds/clean:
+
+.PHONY : worlds/clean
+
+# Convenience name for "preinstall" pass in the directory.
+worlds/preinstall:
+
+.PHONY : worlds/preinstall
+
+#=============================================================================
 # Directory level rules for directory add_markers
 
 # Convenience name for "all" pass in the directory.

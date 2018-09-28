@@ -106,6 +106,13 @@
 /home/workspace/catkin_ws/build/turtlebot_simulator/turtlebot_stdr/CMakeFiles/install/local.dir
 /home/workspace/catkin_ws/build/turtlebot_simulator/turtlebot_stdr/CMakeFiles/test.dir
 /home/workspace/catkin_ws/build/turtlebot_simulator/turtlebot_stdr/CMakeFiles/edit_cache.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/list_install_components.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/install.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/rebuild_cache.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/install/strip.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/install/local.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/test.dir
+/home/workspace/catkin_ws/build/worlds/CMakeFiles/edit_cache.dir
 /home/workspace/catkin_ws/build/add_markers/CMakeFiles/install.dir
 /home/workspace/catkin_ws/build/add_markers/CMakeFiles/rebuild_cache.dir
 /home/workspace/catkin_ws/build/add_markers/CMakeFiles/edit_cache.dir

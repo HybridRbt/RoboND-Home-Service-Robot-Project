@@ -1,0 +1,8 @@
+prefix=/home/workspace/catkin_ws/install
+
+Name: worlds
+Description: Description of worlds
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/workspace/catkin_ws/install/lib 
+Requires: 
