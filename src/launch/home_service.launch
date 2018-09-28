@@ -1,5 +1,5 @@
 <launch>
-  <arg name="rviz_config" value="$(find RvizConfig)/home_service.rviz"/>
+  <arg name="rviz_config" value="$(find rvizConfig)/home_service.rviz"/>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)"/>
 </launch>
